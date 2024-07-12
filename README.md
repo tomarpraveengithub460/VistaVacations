@@ -10,6 +10,6 @@ STEPS :
 6. To run Project on local system -> Add your current IP Address to Mongo Atlas (if using)
 7. Run : npx nodemon app.js
 
-LIVE LINK :
+LIVE LINK : https://vistavacations.onrender.com
 
 Praveen Tomar
