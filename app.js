@@ -132,9 +132,9 @@ app.listen(port, () => {
     console.log(`Server is listening to port ${port}`);
 });
 
-app.get("/", (req, res) => {
-    res.render('listings/home.ejs');
-});
+// app.get("/", (req, res) => {
+//     res.render('listings/home.ejs');
+// });
 
 //For express Router
 // app.use("/",listingRouter);
