@@ -109,14 +109,14 @@ app.use((req, res, next) => {
 });
 
 
-app.get("/demouser", async (req, res) => {
-    let fakeUser = new User({
-        email: "student@gmail.com",
-        username: "delta-student"
-    });
-    let registeredUser = await User.register(fakeUser, "helloworld");   //This is a static method.
-    res.send(registeredUser);
-});
+// app.get("/demouser", async (req, res) => {
+//     let fakeUser = new User({
+//         email: "student@gmail.com",
+//         username: "delta-student"
+//     });
+//     let registeredUser = await User.register(fakeUser, "helloworld");   //This is a static method.
+//     res.send(registeredUser);
+// });
 
 
 
@@ -132,17 +132,19 @@ app.listen(port, () => {
     console.log(`Server is listening to port ${port}`);
 });
 
+// app.get("/", (req, res) => {
+//     app.use("/",listingRouter);
+// });
 
 //For express Router
-app.use("/listings", listingRouter);  //For "/listings" , use listing file
+app.use("/",listingRouter);
+// app.use("/listings", listingRouter);  //For "/listings" , use listing file
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/",userRouter);
 
 //To verify Connection : 
 //Start server : npx nodemon app.js and send request : localhost:8080
-// app.get("/", (req, res) => {
-//     res.send("Hi , I am root");
-// });
+
 
 
 //Establishing connection with Mongoose.

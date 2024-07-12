@@ -8,26 +8,29 @@ const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 
 const listingController = require("../controllers/listings.js");
 
-const {storage}=require("../cloudconfig.js");
+const { storage } = require("../cloudconfig.js");
 
-const multer=require("multer");
-const upload=multer({storage});
+const multer = require("multer");
+const upload = multer({ storage });
 
-//Using Router.route
-router.route("/")
+// //Using Router.route
+// router.route("/")
+//     .get(wrapAsync(listingController.index))
+//     .post(isLoggedIn, upload.single('listing[image]'), validateListing, wrapAsync(listingController.createListing));
+
+router.route("/listings")
     .get(wrapAsync(listingController.index))
-    .post(isLoggedIn,upload.single('listing[image]'),validateListing, wrapAsync(listingController.createListing));
-
+    .post(isLoggedIn, upload.single('listing[image]'), validateListing, wrapAsync(listingController.createListing));
 
 
 //New Route : Now placed before the "/:id" else new will be considered as id.  
-router.get("/new", isLoggedIn, listingController.renderNewForm);
+router.get("/listings/new", isLoggedIn, listingController.renderNewForm);
 
 
 
-router.route("/:id")
+router.route("/listings/:id")
     .get(wrapAsync(listingController.showListing))
-    .put(isLoggedIn, isOwner,upload.single('listing[image]'), validateListing, wrapAsync(listingController.updateListing))
+    .put(isLoggedIn, isOwner, upload.single('listing[image]'), validateListing, wrapAsync(listingController.updateListing))
     .delete(isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
 
 
@@ -106,7 +109,7 @@ router.route("/:id")
 
 
 //Edit Route
-router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.renderEditForm));
+router.get("/listings/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.renderEditForm));
 
 // //Update Route
 // router.put("/:id", wrapAsync(async(req, res) => {
