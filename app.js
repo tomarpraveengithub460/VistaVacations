@@ -132,13 +132,13 @@ app.listen(port, () => {
     console.log(`Server is listening to port ${port}`);
 });
 
-// app.get("/", (req, res) => {
-//     app.use("/",listingRouter);
-// });
+app.get("/", (req, res) => {
+    res.render('listings/home.ejs');
+});
 
 //For express Router
-app.use("/",listingRouter);
-// app.use("/listings", listingRouter);  //For "/listings" , use listing file
+// app.use("/",listingRouter);
+app.use("/listings", listingRouter);  //For "/listings" , use listing file
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/",userRouter);
 
